@@ -9,3 +9,4 @@ pytesseract==0.3.13
 requests==2.32.4
 setuptools==80.9.0
 urllib3==2.5.0
+Flask==3.0.3
