@@ -1,0 +1,30 @@
+name: DevSecOps CI/CD
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install & Test
+      run: |
+        pip install -r requirements.txt
+        pytest
+
+    - name: Security Scan with Bandit
+      run: |
+        pip install bandit
+        bandit -r app/
+
+    - name: Dependency Vulnerability Scan
+      run: |
+        pip install pip-audit
+        pip-audit
